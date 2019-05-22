@@ -2,17 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import UserPageTemplate from './UserPageTemplate';
 
-const DetailsTemplate = ({ children, pageType }) => (
-  <UserPageTemplate pageType={pageType}>{children}</UserPageTemplate>
-);
+const DetailsTemplate = ({ children }) => <UserPageTemplate>{children}</UserPageTemplate>;
 
 DetailsTemplate.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object).isRequired,
-  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
-};
-
-DetailsTemplate.defaultProps = {
-  pageType: 'note',
+  children: PropTypes.element.isRequired,
 };
 
 export default DetailsTemplate;
