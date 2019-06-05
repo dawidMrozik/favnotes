@@ -6,6 +6,7 @@ import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Button from 'components/atoms/Button/Button';
 import withContext from 'hocs/withContext';
+import { connect } from 'react-redux';
 
 const StyledWrapper = styled.div`
   margin-top: 6em;
@@ -60,27 +61,17 @@ const StyledTwitterLink = styled.p`
 `;
 
 const DetailsPage = props => {
-  const { pageContext } = props;
+  const { pageContext, activeItem } = props;
+  const [item] = activeItem;
   return (
     <DetailsTemplate>
       <StyledWrapper>
-        <StyledHeading>My best one</StyledHeading>
+        <StyledHeading>{item.title}</StyledHeading>
         <DateInfo>CREATED - 25/03/2019</DateInfo>
         {pageContext === 'twitters' && (
-          <StyledAvatar src="https://avatars.io/twitter/hello_roman" />
+          <StyledAvatar src={`https://avatars.io/twitter/${item.twitterName}`} />
         )}
-        <StyledContent>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mauris lacus, varius vel
-          eleifend ac, sodales in tellus. Pellentesque erat enim, blandit ut pretium non, rutrum eu
-          nisi. Mauris molestie dui eu efficitur ultricies. Nulla rhoncus feugiat justo a interdum.
-          Suspendisse tristique, sem in fermentum consequat, urna libero dapibus eros, ac faucibus
-          nisl velit in arcu. Sed dignissim libero nec lectus ornare, fringilla consequat elit
-          suscipit. In semper ante nisi, vitae malesuada justo dictum et. Aliquam malesuada gravida
-          magna in bibendum. Morbi et congue risus. Pellentesque orci arcu, porta at enim molestie,
-          facilisis placerat elit. Ut diam ligula, rutrum non mi a, mattis efficitur urna. Class
-          aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-          Mauris sed cursus dui. Fusce eu orci vitae metus ornare finibus.
-        </StyledContent>
+        <StyledContent>{item.content}</StyledContent>
         {pageContext === 'twitters' && <StyledTwitterLink>open this twitter</StyledTwitterLink>}
         {pageContext === 'articles' && <StyledTwitterLink>open this article</StyledTwitterLink>}
         <StyledButton pageContext={pageContext}>Close/save</StyledButton>
@@ -95,6 +86,11 @@ DetailsPage.propTypes = {
     path: PropTypes.string.isRequired,
   }).isRequired,
   pageContext: PropTypes.string.isRequired,
+  activeItem: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default withContext(DetailsPage);
+const mapStateToProps = (state, ownProps) => ({
+  activeItem: state[ownProps.pageContext].filter(item => item._id === ownProps.match.params.id),
+});
+
+export default withContext(connect(mapStateToProps)(DetailsPage));

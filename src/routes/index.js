@@ -7,4 +7,5 @@ export const routes = {
   article: '/articles/:id',
   twitter: '/twitters/:id',
   login: '/login',
+  register: '/register',
 };

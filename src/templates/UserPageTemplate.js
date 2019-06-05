@@ -1,11 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Sidebar from 'components/organisms/Sidebar/Sidebar';
+
+const StyledWrapper = styled.div`
+  padding-left: 150px;
+`;
 
 const UserPageTemplate = ({ children }) => (
   <>
     <Sidebar />
-    {children}
+    <StyledWrapper>{children}</StyledWrapper>
   </>
 );
 
