@@ -23,7 +23,7 @@ const initialState = {
     },
     {
       id: 4,
-      title: 'Reactuj się kto moze!',
+      title: 'Reactuj się kto może!',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
       created: '10 days',
@@ -66,11 +66,11 @@ const initialState = {
   twitters: [
     {
       id: 1,
-      title: 'Hello Roman',
+      title: 'Hello World',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
       created: '1 day',
-      twitterName: 'hello_roman',
+      twitterName: 'elonmusk',
     },
     {
       id: 2,
